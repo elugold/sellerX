@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>products</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="../assets/css/styles.css">
+    <script src="../JS/calculadora.js"></script>
+</head>
+<body class="container-fluid">
+    <nav class="navbar">
+        <img class="img-fluid" src="../assets/img/logo.png" height="300" width="300" alt="logo">
+        <div>
+            <ul>
+                <a href="../index.html">Home</a>
+                <a href="./products.html">Products</a>
+                <a href="./about.html">About Us</a>
+                <a href="./contact.html">Contact</a>
+            </ul>
+        </div>
+    </nav>
+      <head>
+          <h2 class="text-center">Shop the Latest and Greatest Electronics at Tecnoelit - Only on Amazon</h2>
+      </head>
+      <main class="mx-auto text-center">
+          <h3 class="text-center">Headsets</h3>
+          <div>
+            <img class="img-fluid" src="../assets/img/headset.png" height="300" width="300">
+            <img class="img-fluid" src="../assets/img/headset.png" height="300" width="300">
+            <img class="img-fluid" src="../assets/img/headset.png" height="300" width="300">
+            <img class="img-fluid" src="../assets/img/headset.png" height="300" width="300">  
+          </div>
+
+          <h3 class="text-center">Chargers</h3>
+          <div>
+            <img class="img-fluid" src="../assets/img/chargers.png" height="300" width="300">
+            <img class="img-fluid" src="../assets/img/chargers.png" height="300" width="300">
+            <img class="img-fluid" src="../assets/img/chargers.png" height="300" width="300">
+            <img class="img-fluid" src="../assets/img/chargers.png" height="300" width="300">
+          </div>
+          <div>
+            <label for="product">Seleccione un producto:</label>
+            <select id="product">
+              <option value="1">Headsets ($10)</option>
+              <option value="2">Hard Drive ($15)</option>
+              <option value="3">Batery ($20)</option>
+            </select>
+            <label for="quantity">Cantidad:</label>
+            <input type="number" id="quantity" placeholder="Cantidad" />
+            <button onclick="addProduct()">Agregar al carrito</button>
+            <br />
+            <ul id="cart"></ul>
+            <button onclick="calculatePrice()">Calcular precio total</button>
+            <p id="price"></p>
+          </div>
+          
+      </main>
+      <aside></aside>
+      <footer class="text-center">
+        <img class="img-fluid" src="../assets/img/redes/logoFb.png">
+        <img class="img-fluid" src="../assets/img/redes/logoGmail.png">
+        <img class="img-fluid" src="../assets/img/redes/logoWhatsapp.png">
+        <h6>2023 elugold All rights Reserved</h6>
+      </footer>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
