@@ -55,4 +55,6 @@ function calculatePrice() {
 
   // Muestra el precio total en la página
   document.getElementById("price").innerHTML = `El precio total es: $${price}`;
+
 }
+
