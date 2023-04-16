@@ -1,6 +1,4 @@
 
-
-
 function sendOrder() {
 
     window.location.href = "../pages/shipping.html";
@@ -42,4 +40,48 @@ function sendOrder() {
   
     alert(orderInfo)
   }
-  
+
+
+// Declaración de variables y objetos
+var precioProducto = 100;
+var cantidad = 0;
+var descuento = 0;
+var costoEnvio = 10;
+var impuesto = 0.21;
+var total = 0;
+
+// Captura de entradas por prompt
+cantidad = prompt("Ingrese la cantidad que desea comprar:");
+descuento = prompt("Ingrese el código de descuento (si no tiene, deje en blanco):");
+
+// Función para calcular el descuento
+function calcularDescuento(precio, cantidad, descuento) {
+  var descuentoAplicado = 0;
+  if (descuento == "DESC10") {
+    descuentoAplicado = 0.1;
+  } else if (descuento == "DESC20") {
+    descuentoAplicado = 0.2;
+  }
+  var descuentoTotal = precio * cantidad * descuentoAplicado;
+  return descuentoTotal;
+}
+
+// Función para calcular el impuesto
+function calcularImpuesto(precio, cantidad, impuesto) {
+  var impuestoTotal = precio * cantidad * impuesto;
+  return impuestoTotal;
+}
+
+// Cálculo del total a pagar
+var descuentoTotal = calcularDescuento(precioProducto, cantidad, descuento);
+var impuestoTotal = calcularImpuesto(precioProducto, cantidad, impuesto);
+total = precioProducto * cantidad - descuentoTotal + impuestoTotal + costoEnvio;
+
+// Mostrar salidas por alert
+alert("Precio original del producto: $" + precioProducto);
+alert("Cantidad: " + cantidad);
+alert("Descuento aplicado: $" + descuentoTotal);
+alert("Impuesto aplicado: $" + impuestoTotal);
+alert("Costo de envío: $" + costoEnvio);
+alert("Total a pagar: $" + total.toFixed(2));
+
