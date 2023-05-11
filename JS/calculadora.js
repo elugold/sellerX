@@ -45,8 +45,38 @@ function addProduct() {
     }
     cartElement.appendChild(li);
   });
+
+  // Muestra u oculta el botón de "Eliminar carrito" según corresponda
+  const eliminarCarritoButton = document.getElementById("eliminar-carrito");
+  const calcularPriceButton = document.getElementById("calculate-price");
+  if (cart.length > 0) {
+    eliminarCarritoButton.style.display = "block";
+    calcularPriceButton.style.display = "block";
+  } else {
+    eliminarCarritoButton.style.display = "none";
+    calcularPriceButton.style.display = "none";
+  }
 }
 
+function emptyCart() {
+  // Vaciar el arreglo "cart"
+  cart.length = 0;
+
+  // Actualizar el contenido del elemento HTML correspondiente
+  const cartElement = document.getElementById("cart");
+  cartElement.innerHTML = "El carrito está vacío.";
+
+  // Ocultar el botón de "Eliminar carrito"
+  const eliminarCarritoButton = document.getElementById("eliminar-carrito");
+  eliminarCarritoButton.style.display = "none";
+
+  // Ocultar el parrafo de "price"
+  const priceP = document.getElementById("price");
+  priceP.style.display = "none";
+
+  const calcularPriceButton = document.getElementById("calculate-price");
+  calcularPriceButton.style.display = "none";
+}
 
 
 function calculatePrice() {
@@ -152,7 +182,7 @@ buyButton.addEventListener('click', () => {
 
 
 
-form.addEventListener('submit', (event) => {
+form.addEventListener('submit', async (event) => {
   event.preventDefault(); // evita que la página se recargue al enviar el formulario
 
   // Obtiene los valores del formulario
@@ -161,20 +191,47 @@ form.addEventListener('submit', (event) => {
   const city = document.getElementById('city').value;
   const zip = document.getElementById('zip').value;
 
-  // Crea un objeto con los datos de envío
   const shippingData = { name, address, city, zip };
+  const cart = JSON.parse(localStorage.getItem('cart'));
 
-  // Guarda el carrito y los datos de envío en el localStorage
-  localStorage.setItem('cart', JSON.stringify(cart));
-  localStorage.setItem('shippingData', JSON.stringify(shippingData));
+  try {
+    // Simula un proceso de pago con un delay de 2 segundos
+    await new Promise(resolve => setTimeout(resolve, 2000));
 
-  // Oculta el formulario y muestra el mensaje de confirmación
-  form.style.display = 'none';
-  const confirmationMessage = document.createElement('p');
-  confirmationMessage.textContent = 'Gracias por su compra. Los siguientes son los detalles de su pedido:';
-  const cartElement = document.getElementById('cart');
-  cartElement.parentNode.insertBefore(confirmationMessage, cartElement);
-  showOrderDetails() 
+    // Realiza el fetch a los datos de envío
+    const response = await fetch('https://dummyjson.com/products/1')
+    .then(res => res.json())
+    .then(json => console.log(json));
+
+    // Guarda el carrito y los datos de envío en el localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+    localStorage.setItem('shippingData', JSON.stringify(shippingData));
+
+    // Oculta el formulario y muestra el mensaje de confirmación
+    form.style.display = 'none';
+    const confirmationMessage = document.createElement('p');
+    confirmationMessage.textContent = 'Gracias por su compra. Los siguientes son los detalles de su pedido:';
+    const cartElement = document.getElementById('cart');
+    cartElement.parentNode.insertBefore(confirmationMessage, cartElement);
+
+    // Muestra una notificación de éxito con SweetAlert
+    swal({
+      title: "¡Compra realizada con éxito!",
+      icon: "success",
+      button: "Continuar",
+    });
+    showOrderDetails();
+  } catch (error) {
+    console.error(error);
+
+    // Muestra una notificación de error con SweetAlert
+    swal({
+      title: "Ha ocurrido un error",
+      text: "No se pudo procesar la compra",
+      icon: "error",
+      button: "Cerrar",
+    });
+  }
 });
 
 function showOrderDetails() {
